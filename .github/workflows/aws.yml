@@ -43,6 +43,5 @@ jobs:
             ECR_REPOSITORY: ${{ env.ECR_REPO_NAME }}
             IMAGE_TAG: SHA8 
         run: |
-        docker build -t tmgaming-nginx-test .
-        docker tag tmgaming-nginx-test:latest 332637716304.dkr.ecr.ap-southeast-1.amazonaws.com/tmgaming-nginx-test:latest
-        docker push 332637716304.dkr.ecr.ap-southeast-1.amazonaws.com/tmgaming-nginx-test:latest
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
