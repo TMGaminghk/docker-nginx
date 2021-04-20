@@ -35,18 +35,13 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         id: login-ecr
     
-    jobs:my-job:
-    runs-on: ubuntu-18.04
-        
-    - name: Get SHA
-      id: slug
-      run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
       
       - name: Build and tag the image
         env: 
+            SHA8: ${GITHUB_SHA::8}
             ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
             ECR_REPOSITORY: ${{ env.ECR_REPO_NAME }}
-            IMAGE_TAG: "latest,test-${{ steps.slug.outputs.sha7 }}"
+            IMAGE_TAG: $SHA8 
 
         run: |
             docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
