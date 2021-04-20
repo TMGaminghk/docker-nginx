@@ -9,7 +9,7 @@ on:
 
 name: Build and Push to ECR
 env: 
-    ECR_REPO_NAME: dev01-tmgaming
+    ECR_REPO_NAME: tmgaming-nginx-test
     REGION: ap-southeast-1 
 jobs:
     build-and-push:
@@ -44,5 +44,5 @@ jobs:
             IMAGE_TAG: SHA8 
         run: |
             docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
-            -t $ECR_REGISTRY/$ECR_REPOSITORY:latest . /home/runner/work/docker-nginx/docker-nginx/Dockerfile
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
             docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
